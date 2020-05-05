@@ -1,0 +1,74 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+        crossorigin="anonymous">
+
+
+</head>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+    crossorigin="anonymous"></script>>
+
+<body>
+    <div class="container">
+            <div class="btn-group">
+        <div class="button">
+            <input id="bablu" type="button" value="Bablu"></input>
+        </div>
+        <div class="button">
+            <input id="gulabo"  onclick="playAudio('pinky.mp3')"type="button" value="Pinky"></input>
+        </div>
+
+        <div class="button">
+            <input id="barbie" onclick="playAudio('barbie.mp3')" type="button" value="Barbie"></input>
+        </div>
+        <div class="button">
+            <input id="jugnu"  type="button" value="Jugnu"></input>
+        </div>
+        <div class="button">
+            <input id="german" type="button" value="German"></input>
+        </div>
+        </div>
+
+    </div>
+        <input type="button" value="Stop" onClick="document.getElementById('marquee3').stop();" />
+        <input type="button" value="Start" onClick="document.getElementById('marquee3').start();" />
+        <p>..........</p>
+        <marquee direction="right" behavior="scroll" style="border:solid" scrollamount="15" id="marquee3">
+            <img id="picture" src="barbie.gif" alt="dafd">
+        </marquee>
+        <p>..........</p>
+
+</body>
+<script>
+
+    function playAudio(url) {
+        if(!a===undefined)
+            a.pause();
+        else {
+            var a =new Audio(url);
+            }
+        a.src=url;
+        a.load();
+        a.play();
+
+    }
+    $('#bablu').click(function () {
+        $('#picture').attr('src', 'bablu.gif');
+    });
+    $('#gulabo').click(function () {
+        $('#picture').attr('src', 'pinky.gif');
+    });
+    $('#jugnu').click(function () {
+        $('#picture').attr('src', 'jugnu.gif');
+    });
+    $('#barbie').click(function () {
+        $('#picture').attr('src', 'barbie.gif');
+    });
+    $('#german').click(function () {
+        $('#picture').attr('src', 'german.gif');
+    });
+</script>
+
+</html>
