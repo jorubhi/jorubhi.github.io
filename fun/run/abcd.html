@@ -4,53 +4,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
         crossorigin="anonymous">
-
-
+    <link rel="stylesheet" href="style.css">
 </head>
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
     crossorigin="anonymous"></script>>
 
 <body>
     <div class="container">
+        <div class="row"style="display: flex;">
             <div class="btn-group">
-        <div class="button">
-            <input id="bablu"  onclick="playAudio('bablu.mp3')" type="button" value="Chaand"></input>
-        </div>
-        <div class="button">
-            <input id="gulabo"  onclick="playAudio('pinky.mp3')"type="button" value="Pinky"></input>
-        </div>
+                <div class="button ">
+                    <input id="bablu" onclick="playAudio('gulab.mp3')" type="button" value="Bablu "></input>
+                </div>
+                <br>
+                <div class="button">
+                    <input id="gulabo" onclick="playAudio('pinky.mp3')" type="button" value="Pinkyyy"></input>
+                </div>
+                <div class="button">
+                    <input id="barbie" onclick="playAudio('barbie.mp3')" type="button" value="Barbie"></input>
+                </div>
+            </div>
 
-        <div class="button">
-            <input id="barbie" onclick="playAudio('barbie.mp3')" type="button" value="Barbie"></input>
-        </div>
-        <div class="button">
-            <input id="jugnu"  onclick="playAudio('jugnu.mp3')" type="button" value="Jugnu"></input>
-        </div>
-        <div class="button">
-            <input id="german"  onclick="playAudio('german.mp3')"type="button" value="Son Pari"></input>
-        </div>
-        </div>
 
+            <div style="flex-grow: 1;">
+                <a class="speaker">
+                    <span onclick="playAudio('none.mp3')"></span>
+                </a>s
+            </div>
+        </div>
+        <div class="row">
+            <div class="btn-group mb2">
+                <div class="button">
+                    <input id="jugnu" onclick="playAudio('jugnu.mp3')" type="button" value="Jugnu"></input>
+                </div>
+                <div class="button">
+                    <input id="german" onclick="playAudio('sonpari.mp3')" type="button" value="SonPari"></input>
+                </div>
+                <div class="button">
+                    <input id="solu" onclick="playAudio('solu.mp3')" type="button" value="Solnki "></input>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+        </div>
     </div>
-    <div class="button">
-            <input  onclick="playAudio('none.mp3')"type="button" value="AWAAZ BANDD"></input>
-        </div>
-        <input type="button" value="Stop" onClick="document.getElementById('marquee3').stop();" />
-        <input type="button" value="Start" onClick="document.getElementById('marquee3').start();" />
-        <p>..........</p>
-        <marquee direction="right" behavior="scroll" style="border:solid" scrollamount="15" id="marquee3">
-            <img id="picture" src="barbie.gif" alt="dafd">
+    <div class="row">
+        <marquee direction="right" behavior="scroll" scrollamount="15" id="marquee3">
+            <img id="picture" src="home.png" alt="dafd">
         </marquee>
-        <p>..........</p>
+    </div>
+
+
+    <input type="button" value="Stop" onClick="document.getElementById('marquee3').stop();" />
+    <input type="button" value="Start" onClick="document.getElementById('marquee3').start();" />
+    <p>..........</p>
 
 </body>
+<script src="three.r95.min.js"></script>
+<script src="vanta.birds.min.js"></script>
 <script>
-    var a =new Audio('silence.mp3');
+    var a = new Audio('silence.mp3');
     function playAudio(url) {
-            a.pause();
-            a.src=url;
-            a.load();
-            a.play();
+        a.pause();
+        a.src = url;
+        a.load();
+        a.play();
 
     }
     $('#bablu').click(function () {
@@ -67,6 +85,9 @@
     });
     $('#german').click(function () {
         $('#picture').attr('src', 'german.gif');
+    });
+    $('#solu').click(function () {
+        $('#picture').attr('src', 'solu.png');
     });
 </script>
 
