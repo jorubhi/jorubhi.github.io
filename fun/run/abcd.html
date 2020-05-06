@@ -14,7 +14,7 @@
     <div class="container">
             <div class="btn-group">
         <div class="button">
-            <input id="bablu" type="button" value="Bablu"></input>
+            <input id="bablu"  onclick="playAudio('bablu.mp3')" type="button" value="Chaand"></input>
         </div>
         <div class="button">
             <input id="gulabo"  onclick="playAudio('pinky.mp3')"type="button" value="Pinky"></input>
@@ -24,14 +24,17 @@
             <input id="barbie" onclick="playAudio('barbie.mp3')" type="button" value="Barbie"></input>
         </div>
         <div class="button">
-            <input id="jugnu"  type="button" value="Jugnu"></input>
+            <input id="jugnu"  onclick="playAudio('jugnu.mp3')" type="button" value="Jugnu"></input>
         </div>
         <div class="button">
-            <input id="german" type="button" value="German"></input>
+            <input id="german"  onclick="playAudio('german.mp3')"type="button" value="Son Pari"></input>
         </div>
         </div>
 
     </div>
+    <div class="button">
+            <input  onclick="playAudio('none.mp3')"type="button" value="AWAAZ BANDD"></input>
+        </div>
         <input type="button" value="Stop" onClick="document.getElementById('marquee3').stop();" />
         <input type="button" value="Start" onClick="document.getElementById('marquee3').start();" />
         <p>..........</p>
@@ -42,16 +45,12 @@
 
 </body>
 <script>
-
+    var a =new Audio('silence.mp3');
     function playAudio(url) {
-        if(!a===undefined)
             a.pause();
-        else {
-            var a =new Audio(url);
-            }
-        a.src=url;
-        a.load();
-        a.play();
+            a.src=url;
+            a.load();
+            a.play();
 
     }
     $('#bablu').click(function () {
