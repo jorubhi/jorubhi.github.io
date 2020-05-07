@@ -2,26 +2,60 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-        crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+        crossorigin="anonymous"> -->
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-    crossorigin="anonymous"></script>>
+    crossorigin="anonymous"></script>
+<script>
+    function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function (e) {
+        if (!e.target.matches('.dropbtn')) {
+            var myDropdown = document.getElementById("myDropdown");
+            if (myDropdown.classList.contains('show')) {
+                myDropdown.classList.remove('show');
+            }
+        }
+    }
+</script>
 
 <body>
+
+    <div class="navbar">
+        <div class="dropdown">
+            <button class="dropbtn" onclick="myFunction()">
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content" id="myDropdown">
+                <a href="#" id="bablu" onclick="playAudio('gulab.mp3')">Abhilasha</a>
+                <a href="#" id="jugnu" onclick="playAudio('jugnu.mp3')">Jugnu</a>
+                <a href="#" id="barbie" onclick="playAudio('barbie.mp3')">Jorawar</a>
+                <a href="#" id="german" onclick="playAudio('sonpari.mp3')">Shrey</a>
+                <a href="#" id="solu" onclick="playAudio('solu.mp3')">Solanki</a>
+                <a href="#" id="gulabo" onclick="playAudio('pinky.mp3')">Yash</a>
+            </div>
+        </div>
+        <img style="width:25%; height:5% "id="volume" src="unmute.png" onclick="toggleAudio()">
+    </div>
     <div class="container">
-        <div class="row"style="display: flex;">
+        <!-- <div class="row" style="display: flex;">
             <div class="btn-group">
                 <div class="button ">
-                    <input id="bablu" onclick="playAudio('gulab.mp3')" type="button" value="Bablu "></input>
+                    <input id="bablus" onclick="playAudio('gulab.mp3')" type="button" value="Abhilasha "></input>
                 </div>
                 <br>
                 <div class="button">
-                    <input id="gulabo" onclick="playAudio('pinky.mp3')" type="button" value="Pinkyyy"></input>
+                    <input id="gulabo" onclick="playAudio('pinky.mp3')" type="button" value="Yash"></input>
                 </div>
                 <div class="button">
-                    <input id="barbie" onclick="playAudio('barbie.mp3')" type="button" value="Barbie"></input>
+                    <input id="barbie" onclick="playAudio('barbie.mp3')" type="button" value="Jorawar"></input>
                 </div>
             </div>
 
@@ -38,15 +72,15 @@
                     <input id="jugnu" onclick="playAudio('jugnu.mp3')" type="button" value="Jugnu"></input>
                 </div>
                 <div class="button">
-                    <input id="german" onclick="playAudio('sonpari.mp3')" type="button" value="SonPari"></input>
+                    <input id="german" onclick="playAudio('sonpari.mp3')" type="button" value="Shrey"></input>
                 </div>
                 <div class="button">
-                    <input id="solu" onclick="playAudio('solu.mp3')" type="button" value="Solnki "></input>
+                    <input id="solu" onclick="playAudio('solu.mp3')" type="button" value="Solanki "></input>
                 </div>
             </div>
         </div>
         <div class="row">
-        </div>
+        </div> -->
     </div>
     <div class="row">
         <marquee direction="right" behavior="scroll" scrollamount="15" id="marquee3">
@@ -55,7 +89,7 @@
     </div>
 
 
-    <input type="button" value="Stop" onClick="document.getElementById('marquee3').stop();" />
+    <input type="button" value="Stop scrolling" onClick="document.getElementById('marquee3').stop();" />
     <input type="button" value="Start" onClick="document.getElementById('marquee3').start();" />
     <p>..........</p>
 
@@ -71,7 +105,8 @@
         a.play();
     }
 
-    function toggleAudio(){
+    function toggleAudio() {
+        a.paused ? $('#volume').attr('src', 'unmute.png'): $('#volume').attr('src', 'muted.png');
         return a.paused ? a.play() : a.pause();
     }
     $('#bablu').click(function () {
@@ -90,8 +125,21 @@
         $('#picture').attr('src', 'german.gif');
     });
     $('#solu').click(function () {
-        $('#picture').attr('src', 'solu.png');
+        $('#picture').attr('src', 'solu.gif');
     });
+    function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function (e) {
+        if (!e.target.matches('.dropbtn')) {
+            var myDropdown = document.getElementById("myDropdown");
+            if (myDropdown.classList.contains('show')) {
+                myDropdown.classList.remove('show');
+            }
+        }
+    }
 </script>
 
 </html>
