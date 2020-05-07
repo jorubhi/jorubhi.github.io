@@ -12,7 +12,7 @@
     crossorigin="anonymous"></script>
 <script>
     function myFunction() {
-        document.getElementById("myDropdown").classList.toggle("show");
+        document.getElementById("myDropdown").classList.toggle("show");        
     }
 
     // Close the dropdown if the user clicks outside of it
@@ -88,14 +88,11 @@
         </marquee>
     </div>
 
-
     <input type="button" value="Stop scrolling" onClick="document.getElementById('marquee3').stop();" />
     <input type="button" value="Start" onClick="document.getElementById('marquee3').start();" />
     <p>..........</p>
 
 </body>
-<script src="three.r95.min.js"></script>
-<script src="vanta.birds.min.js"></script>
 <script>
     var a = new Audio('silence.mp3');
     function playAudio(url) {
@@ -103,6 +100,8 @@
         a.src = url;
         a.load();
         a.play();
+        
+        document.getElementById("myDropdown").classList.remove('show');
     }
 
     function toggleAudio() {
@@ -127,19 +126,6 @@
     $('#solu').click(function () {
         $('#picture').attr('src', 'solu.gif');
     });
-    function myFunction() {
-        document.getElementById("myDropdown").classList.toggle("show");
-    }
-
-    // Close the dropdown if the user clicks outside of it
-    window.onclick = function (e) {
-        if (!e.target.matches('.dropbtn')) {
-            var myDropdown = document.getElementById("myDropdown");
-            if (myDropdown.classList.contains('show')) {
-                myDropdown.classList.remove('show');
-            }
-        }
-    }
 </script>
 
 </html>
