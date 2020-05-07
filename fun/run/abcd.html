@@ -28,7 +28,7 @@
 
             <div style="flex-grow: 1;">
                 <a class="speaker">
-                    <span onclick="playAudio('none.mp3')"></span>
+                    <span onclick="toggleAudio()"></span>
                 </a>s
             </div>
         </div>
@@ -69,7 +69,10 @@
         a.src = url;
         a.load();
         a.play();
+    }
 
+    function toggleAudio(){
+        return a.paused ? a.play() : a.pause();
     }
     $('#bablu').click(function () {
         $('#picture').attr('src', 'bablu.gif');
