@@ -96,12 +96,11 @@
 <script>
     var a = new Audio('silence.mp3');
     function playAudio(url) {
+        document.getElementById("myDropdown").classList.remove('show');
         a.pause();
         a.src = url;
         a.load();
         a.play();
-        
-        document.getElementById("myDropdown").classList.remove('show');
     }
 
     function toggleAudio() {
@@ -124,7 +123,7 @@
         $('#picture').attr('src', 'german.gif');
     });
     $('#solu').click(function () {
-        $('#picture').attr('src', 'solu.gif');
+        $('#picture').attr('src', 'solu.png');
     });
 </script>
 
