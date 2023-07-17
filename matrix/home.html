@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="content-type" content="text/html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--  stylesheet -->
+  <link href="css/style.css" rel="stylesheet" />
+</head>
+<style>
+  body{ background-color:#d2d2d2;}#canvas{ background-color:#000; display:block; margin:auto;}#logo{ display:none;}
+
+  h1{
+    color: lightgreen;
+    position: fixed;
+    z-index: 1;
+    left:550px;
+      top:200px;
+      background-color: black;
+  }
+</style>
+<body>
+  <canvas width="1200" height="1000" id="canv" ></canvas>
+</body>
+<h1>Hello World! I'm Jorawar.
+  <br/><div style="font-weight: 300; font-family: 'Courier New', Courier, monospace; margin-left: 60px; font-size:medium ; margin-top: 10px;">
+    <a href="https://jorubhi.github.io">Click here to know more!</div>
+</h1>
+  
+<script>
+  const canvas = document.getElementById('canv');
+  const ctx = canvas.getContext('2d');
+
+const w = canvas.width = document.body.offsetWidth;
+const h = canvas.height = document.body.offsetHeight;
+const cols = Math.floor(w / 20) + 1;
+const ypos = Array(cols).fill(0);
+
+ctx.fillStyle = '#000';
+ctx.fillRect(0, 0, w, h);
+
+function matrix () {
+ctx.fillStyle = '#0001';
+ctx.fillRect(0, 0, w, h);
+
+ctx.fillStyle = '#0f0';
+ctx.font = '15pt monospace';
+
+ypos.forEach((y, ind) => {
+  const text = String.fromCharCode(Math.random() * 128);
+  const x = ind * 20;
+  ctx.fillText(text, x, y);
+  if (y > 100 + Math.random() * 10000) ypos[ind] = 0;
+  else ypos[ind] = y + 20;
+});
+}
+
+setInterval(matrix, 50);
+  </script>
+</html>
