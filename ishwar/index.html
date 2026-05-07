@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Netflix | Anniversary Edition</title>
+    <link rel="preload" href="intro.mp4" as="video">
     <style>
         :root { --red: #E50914; --black: #141414; --dark-gray: #181818; --gray: #808080; }
         
@@ -15,10 +16,22 @@
             overflow: hidden; 
         }
 
+        /* --- START OVERLAY --- */
+        #start-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: black; z-index: 1000; display: flex; justify-content: center; align-items: center;
+            cursor: pointer; transition: opacity 0.5s ease;
+        }
+        .start-btn {
+            background: var(--red); color: white; border: none; padding: 15px 30px;
+            font-size: 1.2rem; font-weight: bold; border-radius: 4px; cursor: pointer;
+            box-shadow: 0 0 20px rgba(229, 9, 20, 0.4);
+        }
+
         /* --- 1. INTRO VIDEO --- */
         #intro-stage {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: black; z-index: 999; display: flex; justify-content: center; align-items: center;
+            background: black; z-index: 999; display: none; justify-content: center; align-items: center;
         }
         #intro-video { width: 100%; max-width: 1000px; }
 
@@ -39,21 +52,15 @@
         .profile:hover { color: white; }
         .disabled { opacity: 0.3; cursor: default; }
 
-        /* --- 3. HOME (Netflix Style) --- */
+        /* --- 3. HOME --- */
         #home-stage { display: none; height: 100vh; overflow-y: auto; background: var(--black); animation: fadeIn 1s ease; }
 
-        /* HERO BACKGROUND: This is where your WhatsApp image goes */
         .hero {
-            position: relative;
-            height: 85vh;
+            position: relative; height: 85vh;
             background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 40%, var(--black) 100%), 
-                        url('hero-bg.jpeg'); /* RENAME YOUR PHOTO TO THIS */
-            background-size: cover;
-            background-position: center top;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 0 4%;
+                        url('hero-bg.jpeg');
+            background-size: cover; background-position: center top;
+            display: flex; flex-direction: column; justify-content: center; padding: 0 4%;
         }
 
         .logo { color: var(--red); font-size: 2.2rem; font-weight: bold; position: absolute; top: 20px; left: 4%; }
@@ -62,20 +69,11 @@
         .match { color: #46d369; }
         .hero-desc { max-width: 650px; font-size: 1.2rem; line-height: 1.4; text-shadow: 1px 1px 5px rgba(0,0,0,0.8); }
 
-        /* EPISODES: Solid black background start */
         .main-content { padding: 40px 4% 80px 4%; background: var(--black); position: relative; z-index: 2; }
         .row-title { font-size: 1.5rem; font-weight: bold; margin-bottom: 20px; color: #e5e5e5; }
         
-        .movie-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
-            gap: 12px; 
-        }
-
-        .movie-card { 
-            background: var(--dark-gray); border-radius: 4px; overflow: hidden;
-            transition: transform 0.3s ease; cursor: pointer;
-        }
+        .movie-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+        .movie-card { background: var(--dark-gray); border-radius: 4px; overflow: hidden; transition: transform 0.3s ease; cursor: pointer; }
         .movie-card img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
         .movie-card:hover { transform: scale(1.1); z-index: 5; box-shadow: 0 10px 20px rgba(0,0,0,0.8); }
         
@@ -90,8 +88,12 @@
 </head>
 <body>
 
+    <div id="start-overlay" onclick="initiateExperience()">
+        <button class="start-btn">Get Started</button>
+    </div>
+
     <div id="intro-stage">
-        <video id="intro-video" autoplay playsinline>
+        <video id="intro-video" playsinline preload="auto">
             <source src="intro.mp4" type="video/mp4">
         </video>
     </div>
@@ -114,7 +116,7 @@
             <div class="logo">NETFLIX</div>
             <h1 class="hero-title">Our Story</h1>
             <div class="hero-meta">
-                <span class="match">1000% Match</span> &nbsp; Dec 2025  &nbsp; <span style="border: 1px solid rgba(255,255,255,0.5); padding: 0 4px; font-size: 0.8rem;">18+</span> &nbsp; ∞ Season
+                <span class="match">1000% Match</span> &nbsp; Dec 2025 &nbsp; <span style="border: 1px solid rgba(255,255,255,0.5); padding: 0 4px; font-size: 0.8rem;">18+</span> &nbsp; ∞ Season
             </div>
             <div class="hero-desc">
                 Keeping my word to be with you in each birth, I found you in this life again and this exclusive series of our life continues to be the top-rated experience in my heart. <br> Happy Anniversary meri jaan Ishiiii❤️❤️❤️❤️❤️❤️!
@@ -123,26 +125,31 @@
 
         <div class="main-content">
             <h2 class="row-title">Timeline: The Journey So Far</h2>
-            <div class="movie-grid" id="movie-gallery">
-                </div>
+            <div class="movie-grid" id="movie-gallery"></div>
         </div>
     </div>
 
     <script>
         const video = document.getElementById('intro-video');
+        const startOverlay = document.getElementById('start-overlay');
         const introStage = document.getElementById('intro-stage');
         const profileStage = document.getElementById('profile-stage');
         const homeStage = document.getElementById('home-stage');
+        // FIXED: Define the gallery variable so the loop can find it
         const movieGallery = document.getElementById('movie-gallery');
 
-        const titles = ["The Beginning💗", "Dekha jo pehli baar♥️", "Delhi aaya mera dil💖 Meri mango rasberryy", 
-        "Magic🌻💖", "Meri ichii🍒🌻", "Coffee timeee😍", "That sweet day💗💗💗", "Bdayyy giftss🥰😍💝", "Growing Stronger", "May day!!! 6 months and more ∞"];
+        const titles = [
+            "The Beginning💗", "Dekha jo pehli baar♥️", "Delhi aaya mera dil💖 Meri mango rasberryy", 
+            "Magic🌻💖", "Meri ichii🍒🌻", "Coffee timeee😍", "That sweet day💗💗💗", 
+            "Bdayyy giftss🥰😍💝", "Growing Stronger", "May day💖💗🥰💞!!! 6 months and more ∞"
+        ];
 
+        // Generate Gallery
         for(let i = 1; i <= 10; i++) {
             const card = document.createElement('div');
             card.className = 'movie-card';
             card.innerHTML = `
-                <img src="movie${i}.jpg" ">
+                <img src="movie${i}.jpg" onerror="this.src='https://via.placeholder.com/300x168/222/fff?text=Moment+${i}'">
                 <div class="card-info">
                     <span class="match">999% Match</span>
                     <strong>Episode ${i}: ${titles[i-1] || 'Our Moment'}</strong>
@@ -151,9 +158,20 @@
             movieGallery.appendChild(card);
         }
 
-        video.onended = () => startProfiles();
-        introStage.onclick = () => { if (video.paused) video.play(); else startProfiles(); };
+        function initiateExperience() {
+            startOverlay.style.opacity = '0';
+            setTimeout(() => {
+                startOverlay.style.display = 'none';
+                introStage.style.display = 'flex';
+                video.play().catch(e => {
+                    console.log("Autoplay blocked, skipping to profiles");
+                    startProfiles();
+                });
+            }, 500); 
+        }
 
+        video.onended = () => startProfiles();
+        
         function startProfiles() {
             introStage.style.display = 'none';
             profileStage.style.display = 'flex';
@@ -168,12 +186,11 @@
         const pImg = new Image();
         pImg.src = "profile6.jpg";
         pImg.onload = () => {
-            const box = document.getElementById('main-profile-img');
-            box.style.backgroundImage = "url('profile6.jpg')";
-            box.textContent = ""; 
+            document.getElementById('main-profile-img').style.backgroundImage = "url('profile6.jpg')";
+            document.getElementById('main-profile-img').textContent = ""; 
         };
 
-        setTimeout(() => { if (introStage.style.display !== 'none') startProfiles(); }, 6000);
+        setTimeout(() => { if (introStage.style.display !== 'none' && homeStage.style.display === 'none') startProfiles(); }, 8000);
     </script>
 </body>
 </html>
